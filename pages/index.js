@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useState } from 'react'
 
 function Home() {
@@ -8,7 +7,7 @@ function Home() {
     const [valorVariacao, setValorVariacao] = useState(0);
 
     function variacao() {
-        if(valorInicial && valorFinal) {
+        if (valorInicial && valorFinal) {
             setValorVariacao((valorFinal / valorInicial - 1) * 100)
         }
     }
@@ -28,7 +27,7 @@ function Home() {
                     onChange={(event) => {
                         setValorInicial(event.target.value)
                     }}
-                    onBlur={variacao}
+                    required
                 />
             </div>
             <div>
@@ -41,18 +40,21 @@ function Home() {
                     onChange={(event) => {
                         setValorFinal(event.target.value)
                     }}
-                    onBlur={variacao}
+                    required
                 />
             </div>
             <div>
-            <label>Variação em %</label>
-            <input
-                placeholder="Variacao"
-                type="text"
-                name="valorVariacao"
-                value={`${valorVariacao.toPrecision(4)}%`}
-                disabled
-            />
+                <button type="button" onClick={variacao}>Calcular</button>
+            </div>
+            <div>
+                <label>Variação em %</label>
+                <input
+                    placeholder="Variacao"
+                    type="text"
+                    name="valorVariacao"
+                    value={`${valorVariacao.toPrecision(4)}%`}
+                    disabled
+                />
             </div>
         </div>
     )
